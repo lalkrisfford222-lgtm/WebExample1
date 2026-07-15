@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Literacy Portal</title>
+    <style>
+        /* --- Reset & Global Setup --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* --- Premium Background & Animated Orbs --- */
+        body {
+            /* Animated gradient background */
+            background: linear-gradient(-45deg, #0f172a, #1e3a8a, #312e81, #082f49);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating glowing orbs in the background */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            animation: floatOrb 10s infinite ease-in-out alternate;
+        }
+
+        body::before {
+            width: 500px; height: 500px;
+            background: rgba(59, 130, 246, 0.4);
+            top: -150px; left: -150px;
+        }
+
+        body::after {
+            width: 600px; height: 600px;
+            background: rgba(139, 92, 246, 0.3);
+            bottom: -200px; right: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(60px) scale(1.1); }
+        }
+
+        /* --- Glassmorphism Base Styles --- */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- Top Bar --- */
+        .top-bar {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            color: #94a3b8;
+            padding: 8px 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- Main Header --- */
+        .main-header {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 10;
+        }
+
+        .logo-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(37, 99, 235, 0.8));
+            color: #ffffff;
+            padding: 15px 20px;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            margin-right: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .title-container h1 {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title-container h2 {
+            color: #93c5fd;
+            font-size: 15px;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .hamburger-menu {
+            background: none;
+            border: none;
+            position: absolute;
+            right: 20px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 5px;
+        }
+
+        .hamburger-menu .bar {
+            width: 30px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 3px;
+            transition: 0.3s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .hamburger-menu:hover .bar {
+            background-color: #60a5fa;
+            box-shadow: 0 0 8px rgba(96, 165, 250, 0.8);
+        }
+
+        /* --- Navigation --- */
+        .navigation {
+            display: flex;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 9;
+        }
+
+        .nav-item {
+            flex: 1;
+            text-align: center;
+            padding: 16px 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: #cbd5e1;
+            border-bottom: 3px solid transparent;
+        }
+
+        /* Overriding original colors for premium glass look */
+        .nav-item.dark-blue, .nav-item.light-blue { background-color: transparent; }
+        .text-small { font-size: 12px; line-height: 1.3; }
+        
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+        }
+
+        .nav-item.active {
+            color: #60a5fa;
+            background: rgba(59, 130, 246, 0.1);
+            border-bottom: 3px solid #60a5fa;
+            text-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+        }
+
+        /* --- Search & Filters Section --- */
+        .search-section {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .filter-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .filter-buttons { display: flex; gap: 12px; }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            color: #e2e8f0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .search-container {
+            position: relative;
+            width: 320px;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 12px 45px 12px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            font-size: 15px;
+            color: #ffffff;
+            transition: all 0.3s;
+        }
+
+        .search-container input:focus {
+            outline: none;
+            border-color: #60a5fa;
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 15px rgba(96, 165, 250, 0.3);
+        }
+
+        .search-container input::placeholder { color: #94a3b8; }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #94a3b8;
+            pointer-events: none;
+        }
+
+        /* Accent Band */
+        .accent-band {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+            height: 2px;
+            width: 100%;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.8);
+        }
+
+        /* --- SPA Page Switching Animations --- */
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-content { display: none; }
+        .page-content.active {
+            display: block;
+            animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* --- Common Content Container Setup --- */
+        .content-container {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        /* Animated Skeleton Loading for Images */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .image-placeholder {
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 220px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2.5s infinite linear;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .image-placeholder::before {
+            content: "IMAGE";
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.3);
+            font-weight: bold;
+        }
+
+        /* =========================================
+           PAGE 1 SPECIFIC STYLES
+           ========================================= */
+        .welcome-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(to right, #ffffff, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Staggered load for cards */
+        .content-block {
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 16px;
+            animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .content-block:nth-child(2) { animation-delay: 0.1s; }
+        .content-block:nth-child(3) { animation-delay: 0.2s; }
+        .content-block:nth-child(4) { animation-delay: 0.3s; }
+
+        .content-block:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .section-heading {
+            font-size: 18px;
+            color: #93c5fd;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .split-row {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .col { flex: 1; padding: 15px 10px; }
+        .right-col { border-left: 1px solid rgba(255, 255, 255, 0.05); text-align: center; }
+
+        .row-label {
+            font-size: 15px;
+            font-weight: 500;
+            color: #e2e8f0;
+        }
+
+        .empty-field {
+            height: 45px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        /* =========================================
+           PAGE 2 SPECIFIC STYLES (TRIVIA)
+           ========================================= */
+        .trivia-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 35px;
+        }
+
+        .trivia-brand { display: flex; flex-direction: column; }
+
+        .trivia-logo {
+            font-size: 34px;
+            font-weight: 900;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
+        }
+
+        .trivia-logo span { color: #60a5fa; }
+        .trivia-logo-icon { filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8)); }
+
+        .trivia-subtext {
+            font-size: 15px;
+            font-weight: 400;
+            color: #94a3b8;
+            margin-top: 8px;
+            max-width: 350px;
+            line-height: 1.5;
+        }
+
+        .crosses-decor {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .trivia-row {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 30px;
+            animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+        }
+        .trivia-row:nth-child(2) { animation-delay: 0.1s; }
+        .trivia-row:nth-child(3) { animation-delay: 0.2s; }
+
+        .trivia-col-left { flex: 1.2; }
+        .trivia-col-right { flex: 0.8; }
+
+        .trivia-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(12px);
+            height: 220px;
+            transition: transform 0.3s;
+        }
+        .trivia-card:hover { transform: scale(1.02); }
+
+        .trivia-card-header {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            padding: 15px 20px;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            letter-spacing: 1px;
+        }
+
+        .myth-vs-fact-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(12px);
+            animation: slideUpFade 0.6s backwards;
+            animation-delay: 0.3s;
+        }
+
+        .myth-vs-fact-header {
+            background: rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            padding: 18px 25px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .myth-vs-fact-row {
+            display: flex;
+            padding: 25px;
+            gap: 25px;
+            height: 160px;
+        }
+
+        .myth-vs-fact-col {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+        .myth-vs-fact-col:hover { background: rgba(255, 255, 255, 0.1); }
+
+        /* =========================================
+           PAGE 3 SPECIFIC STYLES (FLIP CARDS)
+           ========================================= */
+        .flip-cards-container {
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+        }
+
+        .flip-header {
+            background: rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            padding: 25px;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .flip-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            padding: 40px;
+        }
+
+        .flip-item-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+        }
+        .flip-item-wrapper:nth-child(1) { animation-delay: 0.1s; }
+        .flip-item-wrapper:nth-child(2) { animation-delay: 0.2s; }
+        .flip-item-wrapper:nth-child(3) { animation-delay: 0.3s; }
+        .flip-item-wrapper:nth-child(4) { animation-delay: 0.4s; }
+
+        /* Interactive Flip Card Mechanics */
+        .flip-card-scene {
+            width: 100%;
+            height: 220px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy flip */
+            transform-style: preserve-3d;
+        }
+
+        .flip-card-scene.is-flipped .flip-card-inner,
+        .flip-card-scene:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .flip-card-front {
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.8);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .flip-card-back {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(139, 92, 246, 0.8) 100%);
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 30px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .click-to-flip-label {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+            padding: 8px 20px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #94a3b8;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        .flip-item-wrapper:hover .click-to-flip-label {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .flip-images-row {
+            display: flex;
+            gap: 25px;
+            margin-top: 40px;
+            animation: slideUpFade 0.6s backwards;
+            animation-delay: 0.5s;
+        }
+
+        /* --- Footer --- */
+        .footer-bar {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            height: 80px;
+            width: 100%;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">Logo and Name</div>
+
+    <header class="main-header">
+        <div class="logo-box">logo</div>
+        <div class="title-container">
+            <h1>Website title</h1>
+            <h2>Subtitle</h2>
+        </div>
+        <button class="hamburger-menu" id="menu-toggle" aria-label="Toggle Menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </header>
+
+    <nav class="navigation">
+        <a href="#" class="nav-item dark-blue active" id="nav-home">Home</a>
+        <a href="#" class="nav-item light-blue" id="nav-trivia">Trivia</a>
+        <a href="#" class="nav-item dark-blue" id="nav-flipcards">Flip Cards</a>
+        <a href="#" class="nav-item light-blue text-small" id="nav-resources">External links and Health resources</a>
+        <a href="#" class="nav-item dark-blue" id="nav-survey">Survey</a>
+    </nav>
+
+    <section class="search-section">
+        <div class="filter-group">
+            <span class="filter-label">Search Health Topics</span>
+            <div class="filter-buttons">
+                <button class="filter-btn">Health<br>Facts</button>
+                <button class="filter-btn">Acute<br>diseases</button>
+                <button class="filter-btn">Chronic<br>diseases</button>
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search">
+            <span class="search-icon">&#x1F50D;</span>
+        </div>
+    </section>
+    
+    <div class="accent-band"></div>
+
+    <div id="home-page" class="page-content active">
+        <main class="content-container">
+            <h1 class="welcome-title">Welcome to (name)</h1>
+
+            <div class="content-block">
+                <h3 class="section-heading">Health Literacy</h3>
+                <div class="split-row">
+                    <div class="col left-col">
+                        <span class="row-label">Introduction</span>
+                    </div>
+                    <div class="col right-col">
+                        <span class="row-label">Image</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h3 class="section-heading">About Us</h3>
+                <div class="empty-field"></div>
+            </div>
+
+            <div class="content-block">
+                <h3 class="section-heading">General Health Information</h3>
+                <div class="empty-field"></div>
+            </div>
+
+            <div class="content-block">
+                <h3 class="section-heading">Objectives</h3>
+                <div class="empty-field"></div>
+            </div>
+        </main>
+    </div>
+
+    <div id="trivia-page" class="page-content">
+        <main class="content-container">
+            <div class="trivia-header-row">
+                <div class="trivia-brand">
+                    <h1 class="trivia-logo">HEALTH <span>TRIVIA</span> <span class="trivia-logo-icon">💡</span></h1>
+                    <p class="trivia-subtext">Explore health facts, myths, and interesting information.</p>
+                </div>
+                <div class="crosses-decor">
+                    <span>+</span><span>+</span><span>+</span>
+                    <span>+</span><span>+</span><span>+</span>
+                </div>
+            </div>
+
+            <div class="trivia-row">
+                <div class="trivia-col-left">
+                    <div class="trivia-card">
+                        <div class="trivia-card-header">
+                            <span>🧠</span> DID YOU KNOW?
+                        </div>
+                    </div>
+                </div>
+                <div class="trivia-col-right">
+                    <div class="image-placeholder"></div>
+                </div>
+            </div>
+
+            <div class="trivia-row">
+                <div class="trivia-col-right">
+                    <div class="image-placeholder"></div>
+                </div>
+                <div class="trivia-col-left">
+                    <div class="trivia-card">
+                        <div class="trivia-card-header" style="height: 45px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="myth-vs-fact-section">
+                <div class="myth-vs-fact-header">MYTH VS FACT</div>
+                <div class="myth-vs-fact-row">
+                    <div class="myth-vs-fact-col"></div>
+                    <div class="myth-vs-fact-col"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="flipcards-page" class="page-content">
+        <main class="content-container">
+            
+            <div class="flip-cards-container">
+                <div class="flip-header">TRIVIA FLIP CARDS</div>
+                
+                <div class="flip-grid">
+                    
+                    <div class="flip-item-wrapper">
+                        <div class="flip-card-scene">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-face flip-card-front">?</div>
+                                <div class="flip-card-face flip-card-back">Fact 1 Revealed!</div>
+                            </div>
+                        </div>
+                        <div class="click-to-flip-label">Hover or Click</div>
+                    </div>
+
+                    <div class="flip-item-wrapper">
+                        <div class="flip-card-scene">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-face flip-card-front">?</div>
+                                <div class="flip-card-face flip-card-back">Fact 2 Revealed!</div>
+                            </div>
+                        </div>
+                        <div class="click-to-flip-label">Hover or Click</div>
+                    </div>
+
+                    <div class="flip-item-wrapper">
+                        <div class="flip-card-scene">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-face flip-card-front">?</div>
+                                <div class="flip-card-face flip-card-back">Fact 3 Revealed!</div>
+                            </div>
+                        </div>
+                        <div class="click-to-flip-label">Hover or Click</div>
+                    </div>
+
+                    <div class="flip-item-wrapper">
+                        <div class="flip-card-scene">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-face flip-card-front">?</div>
+                                <div class="flip-card-face flip-card-back">Fact 4 Revealed!</div>
+                            </div>
+                        </div>
+                        <div class="click-to-flip-label">Hover or Click</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="flip-images-row">
+                <div class="image-placeholder"></div>
+                <div class="image-placeholder"></div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer-bar"></footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Navigation Elements ---
+            const navHome = document.getElementById('nav-home');
+            const navTrivia = document.getElementById('nav-trivia');
+            const navFlipCards = document.getElementById('nav-flipcards');
+            
+            // --- Page Containers ---
+            const homePage = document.getElementById('home-page');
+            const triviaPage = document.getElementById('trivia-page');
+            const flipcardsPage = document.getElementById('flipcards-page');
+
+            const allNavs = document.querySelectorAll('.nav-item');
+            const allPages = document.querySelectorAll('.page-content');
+
+            // --- Navigation Tab Switching Logic ---
+            function switchTab(activeNav, activePage) {
+                // Remove active class from all tabs and pages
+                allNavs.forEach(nav => nav.classList.remove('active'));
+                allPages.forEach(page => page.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding page
+                activeNav.classList.add('active');
+                activePage.classList.add('active');
+            }
+
+            navHome.addEventListener('click', (e) => {
+                e.preventDefault();
+                switchTab(navHome, homePage);
+            });
+
+            navTrivia.addEventListener('click', (e) => {
+                e.preventDefault();
+                switchTab(navTrivia, triviaPage);
+            });
+
+            navFlipCards.addEventListener('click', (e) => {
+                e.preventDefault();
+                switchTab(navFlipCards, flipcardsPage);
+            });
+
+            // Alerts for unfinished nav links
+            document.querySelectorAll('#nav-resources, #nav-survey').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert(`"${item.textContent.trim()}" section is under construction!`);
+                });
+            });
+
+            // --- Flip Card Interaction Logic ---
+            const flipCards = document.querySelectorAll('.flip-card-scene');
+            flipCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    card.classList.toggle('is-flipped');
+                });
+            });
+
+            // --- Search & Filters ---
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && searchInput.value.trim() !== "") {
+                    alert(`Searching database for: "${searchInput.value}"`);
+                    searchInput.value = '';
+                }
+            });
+
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const categoryName = button.innerText.replace('\n', ' ');
+                    alert(`Now displaying topic archives for: ${categoryName}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
