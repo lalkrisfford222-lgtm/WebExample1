@@ -13,13 +13,13 @@
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
-        /* --- Premium Background & Animated Orbs --- */
+        /* --- Professional / Clinical Background --- */
         body {
-            /* Animated gradient background */
-            background: linear-gradient(-45deg, #0f172a, #1e3a8a, #312e81, #082f49);
+            /* Soft white-to-pale-blue gradient, hospital/clinical feel */
+            background: linear-gradient(-45deg, #ffffff, #eef4fb, #e6f0fa, #f7fafd);
             background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: #f8fafc;
+            animation: gradientBG 22s ease infinite;
+            color: #1e293b;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -32,25 +32,25 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating glowing orbs in the background */
+        /* Faint floating blue orbs, kept very light for a clean clinical look */
         body::before, body::after {
             content: '';
             position: fixed;
             border-radius: 50%;
-            filter: blur(120px);
+            filter: blur(130px);
             z-index: -1;
-            animation: floatOrb 10s infinite ease-in-out alternate;
+            animation: floatOrb 12s infinite ease-in-out alternate;
         }
 
         body::before {
-            width: 500px; height: 500px;
-            background: rgba(59, 130, 246, 0.4);
+            width: 520px; height: 520px;
+            background: rgba(59, 130, 246, 0.10);
             top: -150px; left: -150px;
         }
 
         body::after {
-            width: 600px; height: 600px;
-            background: rgba(139, 92, 246, 0.3);
+            width: 620px; height: 620px;
+            background: rgba(96, 165, 250, 0.10);
             bottom: -200px; right: -100px;
             animation-delay: -5s;
         }
@@ -60,66 +60,62 @@
             100% { transform: translateY(60px) scale(1.1); }
         }
 
-        /* --- Glassmorphism Base Styles --- */
+        /* --- Glass / Card Base Styles (kept blue, now on white) --- */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            background: #ffffff;
+            border: 1px solid #dbeafe;
+            box-shadow: 0 8px 28px 0 rgba(30, 64, 175, 0.08);
         }
 
         /* --- Top Bar --- */
         .top-bar {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            color: #94a3b8;
-            padding: 8px 20px;
-            font-size: 12px;
+            background: linear-gradient(90deg, #1e3a8a, #2563eb);
+            color: #ffffff;
+            padding: 10px 22px;
+            font-size: 14px;
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid #1d4ed8;
         }
 
         /* --- Main Header --- */
         .main-header {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
             display: flex;
             align-items: center;
-            padding: 20px;
+            padding: 26px 28px;
             position: relative;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid #1d4ed8;
+            box-shadow: 0 2px 12px rgba(30, 64, 175, 0.15);
             z-index: 10;
         }
 
         .logo-box {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(37, 99, 235, 0.8));
-            color: #ffffff;
-            padding: 15px 20px;
+            background: #ffffff;
+            color: #1e3a8a;
+            padding: 20px 26px;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 17px;
             text-align: center;
-            margin-right: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-right: 24px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .title-container h1 {
             color: #ffffff;
-            font-size: 28px;
+            font-size: 38px;
             font-weight: 800;
             line-height: 1.2;
             letter-spacing: -0.5px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .title-container h2 {
-            color: #93c5fd;
-            font-size: 15px;
-            margin-top: 4px;
+            color: #dbeafe;
+            font-size: 19px;
+            margin-top: 6px;
             font-weight: 500;
         }
 
@@ -127,155 +123,150 @@
             background: none;
             border: none;
             position: absolute;
-            right: 20px;
+            right: 24px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 7px;
             padding: 5px;
         }
 
         .hamburger-menu .bar {
-            width: 30px;
-            height: 3px;
+            width: 34px;
+            height: 4px;
             background-color: #ffffff;
             border-radius: 3px;
             transition: 0.3s;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
 
         .hamburger-menu:hover .bar {
-            background-color: #60a5fa;
-            box-shadow: 0 0 8px rgba(96, 165, 250, 0.8);
+            background-color: #dbeafe;
         }
 
         /* --- Navigation --- */
         .navigation {
             display: flex;
             width: 100%;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: #1d4ed8;
+            border-bottom: 1px solid #1e3a8a;
             z-index: 9;
         }
 
         .nav-item {
             flex: 1;
             text-align: center;
-            padding: 16px 10px;
+            padding: 22px 14px;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 17px;
             font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            color: #cbd5e1;
-            border-bottom: 3px solid transparent;
+            color: #dbeafe;
+            border-bottom: 4px solid transparent;
+            cursor: pointer;
         }
 
-        /* Overriding original colors for premium glass look */
         .nav-item.dark-blue, .nav-item.light-blue { background-color: transparent; }
-        .text-small { font-size: 12px; line-height: 1.3; }
-        
+        .text-small { font-size: 14px; line-height: 1.3; }
+
         .nav-item:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: #2563eb;
             color: #ffffff;
         }
 
         .nav-item.active {
-            color: #60a5fa;
-            background: rgba(59, 130, 246, 0.1);
-            border-bottom: 3px solid #60a5fa;
-            text-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+            color: #ffffff;
+            background: #1e3a8a;
+            border-bottom: 4px solid #ffffff;
         }
 
         /* --- Search & Filters Section --- */
         .search-section {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            padding: 20px 25px;
+            background: #ffffff;
+            padding: 26px 32px;
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .filter-label {
-            font-size: 12px;
+            font-size: 15px;
             font-weight: 700;
-            color: #94a3b8;
+            color: #475569;
             text-transform: uppercase;
             letter-spacing: 1px;
             display: block;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
-        .filter-buttons { display: flex; gap: 12px; }
+        .filter-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
 
         .filter-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            padding: 8px 16px;
-            font-size: 12px;
-            font-weight: 600;
+            background: #eef4fd;
+            border: 1px solid #bfdbfe;
+            border-radius: 10px;
+            padding: 14px 22px;
+            font-size: 15px;
+            font-weight: 700;
             cursor: pointer;
             text-align: center;
-            color: #e2e8f0;
+            color: #1d4ed8;
             transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
+            line-height: 1.3;
         }
 
         .filter-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.4);
+            background: #dbeafe;
+            border-color: #60a5fa;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
         }
 
         .search-container {
             position: relative;
-            width: 320px;
+            width: 360px;
         }
 
         .search-container input {
             width: 100%;
-            padding: 12px 45px 12px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 16px 50px 16px 24px;
+            border: 1px solid #cbd5e1;
             border-radius: 30px;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
-            font-size: 15px;
-            color: #ffffff;
+            background: #f8fafc;
+            font-size: 17px;
+            color: #1e293b;
             transition: all 0.3s;
         }
 
         .search-container input:focus {
             outline: none;
-            border-color: #60a5fa;
-            background: rgba(0, 0, 0, 0.4);
-            box-shadow: 0 0 15px rgba(96, 165, 250, 0.3);
+            border-color: #2563eb;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
         }
 
         .search-container input::placeholder { color: #94a3b8; }
 
         .search-icon {
             position: absolute;
-            right: 20px;
+            right: 22px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 16px;
-            color: #94a3b8;
+            font-size: 18px;
+            color: #64748b;
             pointer-events: none;
         }
 
         /* Accent Band */
         .accent-band {
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
-            height: 2px;
+            background: linear-gradient(90deg, #60a5fa, #2563eb, #1d4ed8);
+            height: 3px;
             width: 100%;
-            box-shadow: 0 0 10px rgba(139, 92, 246, 0.8);
         }
 
         /* --- SPA Page Switching Animations --- */
@@ -292,8 +283,8 @@
 
         /* --- Common Content Container Setup --- */
         .content-container {
-            padding: 40px 20px;
-            max-width: 900px;
+            padding: 50px 24px;
+            max-width: 1400px;
             margin: 0 auto;
             width: 100%;
             flex-grow: 1;
@@ -307,9 +298,9 @@
 
         .image-placeholder {
             border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            height: 220px;
-            background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+            border: 1px solid #dbeafe;
+            height: 240px;
+            background: linear-gradient(90deg, #eef4fd 25%, #dbeafe 50%, #eef4fd 75%);
             background-size: 200% 100%;
             animation: shimmer 2.5s infinite linear;
             position: relative;
@@ -318,16 +309,43 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
-            backdrop-filter: blur(10px);
+            box-shadow: inset 0 0 20px rgba(37, 99, 235, 0.05);
         }
 
         .image-placeholder::before {
             content: "IMAGE";
-            font-size: 12px;
+            font-size: 14px;
             letter-spacing: 2px;
-            color: rgba(255,255,255,0.3);
+            color: #94a3b8;
             font-weight: bold;
+        }
+
+        /* --- Disease card image placeholder (right side, per-illness filename) --- */
+        .disease-card-image {
+            border-radius: 14px;
+            border: 1px solid #bfdbfe;
+            width: 200px;
+            height: 200px;
+            flex-shrink: 0;
+            background: linear-gradient(90deg, #eef4fd 25%, #dbeafe 50%, #eef4fd 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2.5s infinite linear;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .disease-card-image::before {
+            content: attr(data-filename);
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            color: #64748b;
+            font-weight: 700;
+            word-break: break-word;
         }
 
         /* =========================================
@@ -336,25 +354,25 @@
         .welcome-title {
             text-align: center;
             margin-bottom: 40px;
-            font-size: 36px;
+            font-size: 48px;
             font-weight: 800;
-            background: linear-gradient(to right, #ffffff, #93c5fd);
+            background: linear-gradient(to right, #1e3a8a, #3b82f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         /* Staggered load for cards */
         .content-block {
-            margin-bottom: 30px;
-            padding: 30px;
-            border-radius: 16px;
+            margin-bottom: 36px;
+            padding: 38px;
+            border-radius: 18px;
             animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            background: #ffffff;
+            border: 1px solid #dbeafe;
+            box-shadow: 0 8px 28px 0 rgba(30, 64, 175, 0.07);
             transition: transform 0.3s ease, border-color 0.3s ease;
+            scroll-margin-top: 24px;
+            width: 100%;
         }
         .content-block:nth-child(2) { animation-delay: 0.1s; }
         .content-block:nth-child(3) { animation-delay: 0.2s; }
@@ -362,35 +380,35 @@
 
         .content-block:hover {
             transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.3);
+            border-color: #93c5fd;
         }
 
         .section-heading {
-            font-size: 18px;
-            color: #93c5fd;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 12px;
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
+            font-size: 25px;
+            color: #1e40af;
+            border-bottom: 1px solid #dbeafe;
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+            letter-spacing: 0.3px;
         }
 
         .split-row {
             display: flex;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid #eef4fd;
         }
 
-        .col { flex: 1; padding: 15px 10px; }
-        .right-col { border-left: 1px solid rgba(255, 255, 255, 0.05); text-align: center; }
+        .col { flex: 1; padding: 18px 12px; }
+        .right-col { border-left: 1px solid #eef4fd; text-align: center; }
 
         .row-label {
-            font-size: 15px;
+            font-size: 19px;
             font-weight: 500;
-            color: #e2e8f0;
+            color: #1e293b;
         }
 
         .empty-field {
-            height: 45px;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+            height: 50px;
+            border-bottom: 1px dashed #cbd5e1;
         }
 
         /* =========================================
@@ -406,34 +424,33 @@
         .trivia-brand { display: flex; flex-direction: column; }
 
         .trivia-logo {
-            font-size: 34px;
+            font-size: 42px;
             font-weight: 900;
-            color: #ffffff;
+            color: #1e3a8a;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             letter-spacing: -1px;
-            text-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
         }
 
-        .trivia-logo span { color: #60a5fa; }
-        .trivia-logo-icon { filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8)); }
+        .trivia-logo span { color: #2563eb; }
+        .trivia-logo-icon { filter: none; }
 
         .trivia-subtext {
-            font-size: 15px;
+            font-size: 18px;
             font-weight: 400;
-            color: #94a3b8;
-            margin-top: 8px;
-            max-width: 350px;
-            line-height: 1.5;
+            color: #64748b;
+            margin-top: 10px;
+            max-width: 380px;
+            line-height: 1.6;
         }
 
         .crosses-decor {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            color: rgba(255, 255, 255, 0.2);
-            font-size: 20px;
+            gap: 10px;
+            color: #bfdbfe;
+            font-size: 24px;
             font-weight: bold;
         }
 
@@ -450,50 +467,48 @@
         .trivia-col-right { flex: 0.8; }
 
         .trivia-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: #ffffff;
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(12px);
+            border: 1px solid #dbeafe;
+            box-shadow: 0 8px 28px 0 rgba(30, 64, 175, 0.07);
             height: 220px;
             transition: transform 0.3s;
         }
         .trivia-card:hover { transform: scale(1.02); }
 
         .trivia-card-header {
-            background: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
-            padding: 15px 20px;
-            font-size: 13px;
+            background: #eef4fd;
+            color: #1e3a8a;
+            padding: 18px 22px;
+            font-size: 15px;
             font-weight: 700;
             display: flex;
             align-items: center;
             gap: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid #dbeafe;
             letter-spacing: 1px;
         }
 
         .myth-vs-fact-section {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #ffffff;
+            border: 1px solid #dbeafe;
             border-radius: 16px;
             overflow: hidden;
             margin-top: 20px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 28px 0 rgba(30, 64, 175, 0.07);
             animation: slideUpFade 0.6s backwards;
             animation-delay: 0.3s;
         }
 
         .myth-vs-fact-header {
-            background: rgba(0, 0, 0, 0.3);
-            color: #ffffff;
-            padding: 18px 25px;
-            font-size: 15px;
+            background: #dbeafe;
+            color: #1e3a8a;
+            padding: 20px 26px;
+            font-size: 18px;
             font-weight: 700;
             letter-spacing: 1px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid #bfdbfe;
         }
 
         .myth-vs-fact-row {
@@ -505,12 +520,12 @@
 
         .myth-vs-fact-col {
             flex: 1;
-            background: rgba(255, 255, 255, 0.05);
+            background: #f8fafc;
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid #e2e8f0;
             transition: all 0.3s;
         }
-        .myth-vs-fact-col:hover { background: rgba(255, 255, 255, 0.1); }
+        .myth-vs-fact-col:hover { background: #eef4fd; }
 
         /* =========================================
            PAGE 3 SPECIFIC STYLES (FLIP CARDS)
@@ -519,21 +534,19 @@
             border-radius: 16px;
             overflow: hidden;
             margin-bottom: 30px;
-            background: rgba(255, 255, 255, 0.03);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
+            background: #ffffff;
+            box-shadow: 0 8px 28px 0 rgba(30, 64, 175, 0.07);
+            border: 1px solid #dbeafe;
         }
 
         .flip-header {
-            background: rgba(0, 0, 0, 0.3);
+            background: #1e3a8a;
             color: #ffffff;
-            padding: 25px;
-            font-size: 22px;
+            padding: 28px;
+            font-size: 28px;
             font-weight: 800;
             letter-spacing: 1px;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .flip-grid {
@@ -582,30 +595,28 @@
             height: 100%;
             backface-visibility: hidden;
             border-radius: 16px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 28px 0 rgba(30, 64, 175, 0.1);
+            border: 1px solid #bfdbfe;
         }
 
         .flip-card-front {
-            background: rgba(255, 255, 255, 0.05);
+            background: #eef4fd;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 50px;
+            font-size: 60px;
             font-weight: 900;
-            color: rgba(255, 255, 255, 0.8);
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            color: #2563eb;
         }
 
         .flip-card-back {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(139, 92, 246, 0.8) 100%);
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             transform: rotateY(180deg);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 18px;
+            font-size: 21px;
             font-weight: 600;
             padding: 30px;
             text-align: center;
@@ -613,22 +624,21 @@
         }
 
         .click-to-flip-label {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(5px);
-            padding: 8px 20px;
-            font-size: 11px;
+            background: #f1f5f9;
+            padding: 10px 22px;
+            font-size: 13px;
             font-weight: 700;
-            color: #94a3b8;
+            color: #475569;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid #e2e8f0;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s;
         }
-        
+
         .flip-item-wrapper:hover .click-to-flip-label {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
+            background: #dbeafe;
+            color: #1e3a8a;
         }
 
         .flip-images-row {
@@ -641,12 +651,256 @@
 
         /* --- Footer --- */
         .footer-bar {
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            height: 80px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 55%, #2563eb 100%);
+            border-top: 3px solid #93c5fd;
             width: 100%;
             margin-top: auto;
+            padding: 44px 24px 28px 24px;
+            color: #dbeafe;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-bar::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 220px;
+            height: 220px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 50%;
+        }
+
+        .footer-bar::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -40px;
+            width: 260px;
+            height: 260px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-col h5 {
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #bfdbfe;
+            font-size: 14.5px;
+            line-height: 1.9;
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-col a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .footer-brand .footer-logo-box {
+            background: #ffffff;
+            color: #1e3a8a;
+            font-weight: 800;
+            font-size: 15px;
+            padding: 10px 14px;
+            border-radius: 10px;
+        }
+
+        .footer-brand span {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 34px auto 0 auto;
+            padding-top: 22px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: center;
+            font-size: 13px;
+            color: #93c5fd;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Home tab reference content styles --- */
+        .info-text {
+            color: #334155;
+            font-size: 17px;
+            line-height: 1.8;
+            padding: 15px 10px 5px 10px;
+        }
+        .info-text p { margin-bottom: 12px; }
+        .info-subheading {
+            color: #1d4ed8;
+            font-size: 19px;
+            font-weight: 700;
+            margin: 22px 10px 10px 10px;
+        }
+        .info-list {
+            list-style: none;
+            padding: 0 10px 10px 10px;
+            margin: 0;
+        }
+        .info-list li {
+            color: #334155;
+            font-size: 17px;
+            line-height: 1.7;
+            padding: 10px 0;
+            border-bottom: 1px solid #eef4fd;
+        }
+        .info-list li::before {
+            content: "›";
+            color: #2563eb;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .disease-card {
+            background: #f8fafd;
+            border: 1px solid #dbeafe;
+            border-radius: 14px;
+            padding: 28px;
+            margin: 20px 12px;
+            display: flex;
+            gap: 26px;
+            align-items: flex-start;
+        }
+        .disease-card-content {
+            flex: 1;
+            min-width: 0;
+        }
+        .disease-card h4 {
+            color: #1e3a8a;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        .disease-tag {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+        .tag-acute {
+            background: #fce7f3;
+            color: #be185d;
+            border: 1px solid #fbcfe8;
+        }
+        .tag-chronic {
+            background: #ede9fe;
+            color: #6d28d9;
+            border: 1px solid #ddd6fe;
+        }
+        .tag-story {
+            background: #dbeafe;
+            color: #1d4ed8;
+            border: 1px solid #bfdbfe;
+        }
+        .disease-card p { color: #334155; font-size: 16.5px; line-height: 1.65; margin-bottom: 10px; }
+        .disease-card strong { color: #0f172a; }
+        .home-divider {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 10px 0 25px 0;
+        }
+
+        /* --- Home Hero Video Background --- */
+        .home-hero {
+            position: relative;
+            width: 100%;
+            height: 78vh;
+            min-height: 420px;
+            max-height: 720px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .home-hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%) scale(1.12);
+            filter: blur(7px) brightness(0.75) saturate(1.05);
+            transition: opacity 0.25s linear;
+            will-change: opacity;
+            z-index: 0;
+        }
+
+        .home-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(238, 244, 253, 0.65) 55%, #f7fafd 100%);
+            z-index: 1;
+            transition: opacity 0.25s linear;
+        }
+
+        .home-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+            transition: opacity 0.25s linear, transform 0.25s linear;
+        }
+
+        .home-hero-content .filter-label {
+            display: block;
+            margin-bottom: 16px;
+            color: #1e3a8a;
+        }
+
+        .home-hero-content .welcome-title {
+            margin-bottom: 0;
+        }
+
+        /* Responsive: keep disease card images from crowding on narrow screens */
+        @media (max-width: 640px) {
+            .disease-card { flex-direction: column; }
+            .disease-card-image { width: 100%; height: 180px; }
+            .footer-inner { flex-direction: column; }
         }
     </style>
 </head>
@@ -679,9 +933,9 @@
         <div class="filter-group">
             <span class="filter-label">Search Health Topics</span>
             <div class="filter-buttons">
-                <button class="filter-btn">Health<br>Facts</button>
-                <button class="filter-btn">Acute<br>diseases</button>
-                <button class="filter-btn">Chronic<br>diseases</button>
+                <button class="filter-btn" id="filter-stories">Stories</button>
+                <button class="filter-btn" id="filter-acute">Acute<br>diseases</button>
+                <button class="filter-btn" id="filter-chronic">Chronic<br>diseases</button>
             </div>
         </div>
         <div class="search-container">
@@ -693,8 +947,19 @@
     <div class="accent-band"></div>
 
     <div id="home-page" class="page-content active">
+
+        <section class="home-hero" id="home-hero">
+            <video class="home-hero-video" id="home-hero-video" autoplay muted loop playsinline>
+                <source src="hero-video.mp4" type="video/mp4">
+            </video>
+            <div class="home-hero-overlay" id="home-hero-overlay"></div>
+            <div class="home-hero-content" id="home-hero-content">
+                <span class="filter-label">Health Literacy</span>
+                <h1 class="welcome-title">Welcome to (name)</h1>
+            </div>
+        </section>
+
         <main class="content-container">
-            <h1 class="welcome-title">Welcome to (name)</h1>
 
             <div class="content-block">
                 <h3 class="section-heading">Health Literacy</h3>
@@ -722,6 +987,354 @@
                 <h3 class="section-heading">Objectives</h3>
                 <div class="empty-field"></div>
             </div>
+
+            <!-- ===== ADDED CONTENT BELOW: reference information from uploaded documents ===== -->
+
+            <div class="content-block">
+                <h3 class="section-heading">Understanding Acute and Chronic Illnesses</h3>
+                <div class="info-text">
+                    <p>An illness is a condition that affects a person's physical or mental health. It can interfere with the normal functioning of the body and may cause symptoms such as pain, fever, fatigue, or difficulty performing everyday activities. Illnesses can be temporary or long-lasting, depending on their cause and severity. Some illnesses are caused by infections, while others develop because of genetics, lifestyle, environmental factors, or the body's immune system.</p>
+                </div>
+
+                <div class="info-subheading">What is an Acute Illness?</div>
+                <div class="info-text">
+                    <p>An acute illness is a condition that develops suddenly and usually lasts for a short period, ranging from a few days to several weeks. Most acute illnesses improve with proper treatment, rest, or medication. Some are mild, while others may require emergency medical care if left untreated.</p>
+                </div>
+                <div class="info-subheading">Characteristics</div>
+                <ul class="info-list">
+                    <li><strong>Sudden appearance</strong> — appears quickly, often within hours or days after exposure to an infection, injury, or other health condition.</li>
+                    <li><strong>Short duration</strong> — usually lasts only a short time and often resolves completely with proper care.</li>
+                    <li><strong>Rapid symptoms</strong> — symptoms develop quickly and are often easy to notice, making early diagnosis and treatment important.</li>
+                    <li><strong>Often curable</strong> — many acute illnesses can be successfully treated through medication, rest, hydration, or other appropriate medical care.</li>
+                    <li><strong>May require immediate care</strong> — some acute illnesses, such as appendicitis or severe pneumonia, can become life-threatening if medical treatment is delayed.</li>
+                </ul>
+                <div class="info-subheading">Common Causes</div>
+                <ul class="info-list">
+                    <li>Viral infections — influenza, COVID-19, and the common cold spread from person to person.</li>
+                    <li>Bacterial infections — strep throat, pneumonia, urinary tract infections, and food poisoning.</li>
+                    <li>Food contamination — contaminated food or water introducing harmful bacteria, viruses, or parasites.</li>
+                    <li>Injuries or accidents — fractures, burns, cuts, or sprains.</li>
+                    <li>Allergic reactions — exposure to allergens like food, insect stings, or medications.</li>
+                </ul>
+                <div class="info-subheading">Common Symptoms</div>
+                <ul class="info-list">
+                    <li>Fever, cough, sore throat, body aches</li>
+                    <li>Vomiting, diarrhea, fatigue</li>
+                    <li>Pain or swelling in a specific part of the body</li>
+                </ul>
+                <div class="info-subheading">General Treatment for Acute Illnesses</div>
+                <ul class="info-list">
+                    <li>Rest and drinking plenty of fluids</li>
+                    <li>Prescription or over-the-counter medicines</li>
+                    <li>Antibiotics (for bacterial infections only)</li>
+                    <li>Antiviral medications (for some viral infections)</li>
+                    <li>Hospital care for severe cases</li>
+                </ul>
+            </div>
+
+            <div class="content-block" id="acute-diseases-section">
+                <h3 class="section-heading">Acute Illness Examples</h3>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-acute">Acute</span>
+                        <h4>Common Cold</h4>
+                        <p>A mild viral infection of the nose, throat, and upper airways, most often caused by rhinoviruses. Usually resolves on its own within 7–10 days.</p>
+                        <p><strong>Symptoms:</strong> runny/stuffy nose, sneezing, sore throat, mild cough, mild fever (more common in children), headache, fatigue.</p>
+                        <p><strong>Treatment:</strong> rest, fluids, saline nasal sprays, pain relievers/fever reducers. No cure exists since it's viral; antibiotics do not work against it.</p>
+                        <p><strong>Prevention:</strong> wash hands, avoid touching your face, cover coughs/sneezes, clean surfaces, stay home when sick.</p>
+                        <p><strong>Interesting fact:</strong> Adults usually catch 2–3 colds a year; children may get 6–8 because their immune systems are still developing.</p>
+                    </div>
+                    <div class="disease-card-image" data-filename="common_cold.png"></div>
+                </div>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-acute">Acute</span>
+                        <h4>Influenza (Flu)</h4>
+                        <p>A contagious respiratory illness caused by influenza A or B viruses that develops suddenly and can lead to serious complications in high-risk groups.</p>
+                        <p><strong>Symptoms:</strong> high fever, chills, muscle aches, headache, extreme fatigue, dry cough, sore throat.</p>
+                        <p><strong>Complications:</strong> pneumonia, ear/sinus infections, worsening asthma, heart inflammation, hospitalization.</p>
+                        <p><strong>Treatment:</strong> rest, fluids, fever-reducing medication, antiviral medications (e.g., oseltamivir) when prescribed early.</p>
+                        <p><strong>Prevention:</strong> annual flu vaccine, hand hygiene, avoiding close contact with sick people.</p>
+                        <p><strong>Interesting fact:</strong> The flu vaccine changes almost every year because influenza viruses constantly mutate.</p>
+                    </div>
+                    <div class="disease-card-image" data-filename="influenza_flu.png"></div>
+                </div>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-acute">Acute</span>
+                        <h4>COVID-19</h4>
+                        <p>A contagious respiratory illness caused by the SARS-CoV-2 virus, spreading through respiratory droplets and airborne particles.</p>
+                        <p><strong>Symptoms:</strong> fever/chills, cough, sore throat, fatigue, headache, muscle aches, loss of taste or smell, shortness of breath.</p>
+                        <p><strong>Complications:</strong> pneumonia, blood clots, respiratory failure, long COVID.</p>
+                        <p><strong>Treatment:</strong> rest and hydration, fever reducers, antivirals for eligible patients, oxygen therapy, hospital care for severe illness.</p>
+                        <p><strong>Interesting fact:</strong> Some infected individuals experience no symptoms but can still spread the virus.</p>
+                    </div>
+                    <div class="disease-card-image" data-filename="covid_19.png"></div>
+                </div>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-acute">Acute</span>
+                        <h4>Food Poisoning</h4>
+                        <p>Caused by eating food or drinking water contaminated with harmful bacteria (Salmonella, E. coli, Listeria), viruses (Norovirus), parasites, or toxins.</p>
+                        <p><strong>Symptoms:</strong> nausea, vomiting, diarrhea, stomach cramps, fever, weakness.</p>
+                        <p><strong>Treatment:</strong> plenty of fluids, oral rehydration solutions, rest, hospital care for severe dehydration.</p>
+                        <p><strong>Prevention:</strong> wash hands before preparing food, cook thoroughly, refrigerate properly, avoid contaminated water.</p>
+                    </div>
+                    <div class="disease-card-image" data-filename="food_poisoning.png"></div>
+                </div>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-acute">Acute</span>
+                        <h4>Pneumonia</h4>
+                        <p>An infection causing inflammation in the air sacs of one or both lungs, which may fill with fluid or pus, making breathing difficult.</p>
+                        <p><strong>Causes:</strong> bacteria, viruses, or fungi.</p>
+                        <p><strong>Symptoms:</strong> fever, cough with mucus, chest pain, difficulty breathing, chills, fatigue.</p>
+                        <p><strong>Treatment:</strong> antibiotics (bacterial), antivirals when appropriate, rest, fluids, oxygen therapy, hospitalization for severe cases.</p>
+                        <p><strong>Interesting fact:</strong> Pneumonia is a leading cause of death among children under five worldwide, but many cases can be prevented through vaccination and proper healthcare.</p>
+                    </div>
+                    <div class="disease-card-image" data-filename="pneumonia.png"></div>
+                </div>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-acute">Acute</span>
+                        <h4>Dengue Fever</h4>
+                        <p>A mosquito-borne viral illness common in tropical and subtropical countries, including the Philippines, transmitted by infected Aedes mosquitoes.</p>
+                        <p><strong>Symptoms:</strong> high fever, severe headache, pain behind the eyes, muscle/joint pain, skin rash, nausea, vomiting.</p>
+                        <p><strong>Treatment:</strong> plenty of fluids, rest, acetaminophen for fever, hospital monitoring for severe cases. Aspirin and ibuprofen are generally avoided as they may increase bleeding risk.</p>
+                        <p><strong>Prevention:</strong> eliminate standing water, use mosquito repellent, wear long sleeves, install window screens.</p>
+                        <p><strong>Interesting fact:</strong> A second dengue infection with a different virus type may increase the risk of severe dengue.</p>
+                    </div>
+                    <div class="disease-card-image" data-filename="dengue_fever.png"></div>
+                </div>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-acute">Acute</span>
+                        <h4>Appendicitis</h4>
+                        <p>Inflammation of the appendix, considered a medical emergency because it can rupture if not treated promptly.</p>
+                        <p><strong>Symptoms:</strong> sudden pain near the belly button that moves to the lower right abdomen, loss of appetite, nausea, vomiting, fever, abdominal swelling.</p>
+                        <p><strong>Treatment:</strong> surgical removal of the appendix (appendectomy), antibiotics, hospital care.</p>
+                        <p><strong>Interesting fact:</strong> Appendicitis is one of the most common reasons for emergency abdominal surgery worldwide.</p>
+                    </div>
+                    <div class="disease-card-image" data-filename="appendicitis.png"></div>
+                </div>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-acute">Acute</span>
+                        <h4>Strep Throat</h4>
+                        <p>A bacterial infection of the throat and tonsils caused by Group A Streptococcus bacteria, which usually requires antibiotics to prevent complications.</p>
+                        <p><strong>Symptoms:</strong> severe sore throat, pain when swallowing, fever, swollen lymph nodes, red/swollen tonsils, white patches on tonsils.</p>
+                        <p><strong>Treatment:</strong> antibiotics, rest, fluids, pain relievers, warm saltwater gargles.</p>
+                        <p><strong>Interesting fact:</strong> Taking antibiotics within the first 48 hours can reduce symptoms, prevent complications, and decrease the spread of infection.</p>
+                    </div>
+                    <div class="disease-card-image" data-filename="strep_throat.png"></div>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h3 class="section-heading">Understanding Chronic Illness</h3>
+                <div class="info-text">
+                    <p>A chronic illness is a disease or medical condition that lasts for one year or longer and usually requires ongoing medical care, lifestyle changes, or continuous treatment. Unlike acute illnesses, chronic illnesses often develop gradually and may not have a permanent cure. However, many people can manage these conditions successfully and continue living healthy, productive lives through proper treatment and healthy habits.</p>
+                </div>
+                <div class="info-subheading">Characteristics</div>
+                <ul class="info-list">
+                    <li><strong>Long-term condition</strong> — lasts months, years, or even a lifetime, requiring continuous monitoring and management.</li>
+                    <li><strong>Gradual development</strong> — many chronic diseases develop slowly, though some appear suddenly before becoming long-term.</li>
+                    <li><strong>Ongoing treatment</strong> — regular medication, therapy, checkups, or lifestyle changes are needed to prevent complications.</li>
+                    <li><strong>May affect daily life</strong> — can impact a person's ability to work, study, exercise, or perform daily activities.</li>
+                    <li><strong>Risk of complications</strong> — without proper management, chronic illnesses can damage organs, reduce quality of life, or become life-threatening.</li>
+                </ul>
+                <div class="info-subheading">Common Causes</div>
+                <ul class="info-list">
+                    <li>Genetics — some chronic illnesses run in families because of inherited genes.</li>
+                    <li>Poor diet — foods high in sugar, salt, and unhealthy fats increase risk.</li>
+                    <li>Physical inactivity — contributes to obesity, heart disease, diabetes, and other long-term conditions.</li>
+                    <li>Smoking and vaping — damages the lungs, heart, and blood vessels.</li>
+                    <li>Excessive alcohol use — can harm the liver, heart, and other organs long-term.</li>
+                    <li>Environmental factors — air pollution, workplace hazards, exposure to harmful chemicals.</li>
+                    <li>Aging — likelihood of chronic disease increases with age.</li>
+                </ul>
+                <div class="info-subheading">Common Symptoms</div>
+                <ul class="info-list">
+                    <li>Persistent fatigue and shortness of breath</li>
+                    <li>Persistent pain that lasts weeks, months, or years</li>
+                    <li>Frequent urination (often associated with diabetes or kidney disease)</li>
+                    <li>High blood pressure (often no obvious symptoms but damages organs over time)</li>
+                    <li>Joint pain and stiffness</li>
+                    <li>Unexpected weight changes</li>
+                </ul>
+                <div class="info-subheading">Managing Chronic Illnesses</div>
+                <ul class="info-list">
+                    <li>Taking medications exactly as prescribed</li>
+                    <li>Regular medical checkups</li>
+                    <li>Eating a balanced diet and exercising regularly</li>
+                    <li>Managing stress and avoiding smoking/excessive alcohol</li>
+                    <li>Monitoring symptoms at home and following provider recommendations</li>
+                </ul>
+            </div>
+
+            <div class="content-block" id="chronic-diseases-section">
+                <h3 class="section-heading">Chronic Illness Examples</h3>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-chronic">Chronic</span>
+                        <h4>Type 2 Diabetes</h4>
+                        <p>Occurs when the body becomes resistant to insulin or does not produce enough insulin to maintain normal blood sugar levels — the most common type of diabetes.</p>
+                        <p><strong>Symptoms:</strong> frequent urination, increased thirst, constant hunger, blurred vision, fatigue, slow-healing wounds.</p>
+                        <p><strong>Management:</strong> healthy diet, regular exercise, weight management, blood sugar monitoring, oral medications, insulin if needed.</p>
+                        <p><strong>Complications:</strong> heart disease, kidney disease, nerve damage, vision loss, foot problems.</p>
+                        <p><strong>Interesting fact:</strong> More than 90% of all diabetes cases worldwide are Type 2 Diabetes.</p>
+                    </div>
+                    <div class="disease-card-image" data-filename="type_2_diabetes.png"></div>
+                </div>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-chronic">Chronic</span>
+                        <h4>Hypertension (High Blood Pressure)</h4>
+                        <p>A condition in which the force of blood against artery walls stays consistently too high — often called the "silent killer" since many people have no symptoms.</p>
+                        <p><strong>Symptoms (if severe):</strong> headaches, dizziness, blurred vision, nosebleeds.</p>
+                        <p><strong>Management:</strong> blood pressure medications, reducing salt intake, regular exercise, healthy weight, stress management.</p>
+                        <p><strong>Complications:</strong> stroke, heart attack, kidney disease, vision loss.</p>
+                        <p><strong>Interesting fact:</strong> Many people live with hypertension for years without knowing they have it.</p>
+                    </div>
+                    <div class="disease-card-image" data-filename="hypertension.png"></div>
+                </div>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-chronic">Chronic</span>
+                        <h4>Asthma</h4>
+                        <p>Causes inflammation and narrowing of the airways, making breathing difficult; symptoms often come and go and may worsen after exposure to triggers.</p>
+                        <p><strong>Common triggers:</strong> dust, smoke, pollen, pet dander, cold air, respiratory infections, exercise.</p>
+                        <p><strong>Symptoms:</strong> wheezing, shortness of breath, chest tightness, persistent coughing.</p>
+                        <p><strong>Management:</strong> rescue inhalers, long-term controller inhalers, avoiding triggers, an asthma action plan.</p>
+                        <p><strong>Interesting fact:</strong> Asthma cannot currently be cured, but many people live completely normal lives with proper management.</p>
+                    </div>
+                    <div class="disease-card-image" data-filename="asthma.png"></div>
+                </div>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-chronic">Chronic</span>
+                        <h4>Coronary Artery Disease (Heart Disease)</h4>
+                        <p>The most common type of heart disease, occurring when the arteries supplying blood to the heart become narrowed or blocked by fatty plaque (atherosclerosis).</p>
+                        <p><strong>Symptoms:</strong> chest pain (angina), shortness of breath, fatigue, heart palpitations.</p>
+                        <p><strong>Management:</strong> heart medications, lifestyle changes, cardiac rehabilitation, angioplasty or bypass surgery if necessary.</p>
+                        <p><strong>Interesting fact:</strong> Heart disease remains one of the leading causes of death worldwide despite being largely preventable through healthy lifestyle choices.</p>
+                    </div>
+                    <div class="disease-card-image" data-filename="coronary_artery_disease.png"></div>
+                </div>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-chronic">Chronic</span>
+                        <h4>Chronic Kidney Disease (CKD)</h4>
+                        <p>A long-term condition in which the kidneys gradually lose their ability to filter waste products and excess fluids from the blood. Progresses through five stages, from mild damage (Stage 1) to kidney failure requiring dialysis or transplant (Stage 5).</p>
+                        <p><strong>Symptoms:</strong> fatigue, swollen feet/ankles, frequent urination, foamy or bloody urine, muscle cramps, nausea, poor appetite.</p>
+                        <p><strong>Management:</strong> blood pressure and blood sugar control, kidney-friendly diet, medications, regular checkups, dialysis or transplant in advanced stages.</p>
+                        <p><strong>Interesting fact:</strong> The kidneys filter about 180 liters of blood every day, removing waste while keeping the nutrients the body needs.</p>
+                    </div>
+                    <div class="disease-card-image" data-filename="chronic_kidney_disease.png"></div>
+                </div>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-chronic">Chronic</span>
+                        <h4>Arthritis</h4>
+                        <p>Causes inflammation, pain, stiffness, and swelling in one or more joints; includes over 100 different joint diseases. Common types include Osteoarthritis, Rheumatoid Arthritis, Gout, and Psoriatic Arthritis.</p>
+                        <p><strong>Symptoms:</strong> joint pain, swelling, stiffness, reduced movement, tender joints.</p>
+                        <p><strong>Management:</strong> pain relievers, anti-inflammatory medications, physical therapy, regular exercise, weight management, joint replacement surgery for severe cases.</p>
+                        <p><strong>Interesting fact:</strong> Arthritis affects over 350 million people worldwide, making it one of the leading causes of disability.</p>
+                    </div>
+                    <div class="disease-card-image" data-filename="arthritis.png"></div>
+                </div>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-chronic">Chronic</span>
+                        <h4>Chronic Obstructive Pulmonary Disease (COPD)</h4>
+                        <p>A progressive lung disease that permanently reduces airflow, usually developing after years of lung damage, most commonly from smoking. Includes Chronic Bronchitis and Emphysema.</p>
+                        <p><strong>Symptoms:</strong> persistent cough, excess mucus, wheezing, chest tightness, shortness of breath.</p>
+                        <p><strong>Management:</strong> stop smoking, bronchodilator inhalers, steroid medications, pulmonary rehabilitation, oxygen therapy, surgery in severe cases.</p>
+                        <p><strong>Interesting fact:</strong> Quitting smoking is the most effective way to slow the progression of COPD.</p>
+                    </div>
+                    <div class="disease-card-image" data-filename="copd.png"></div>
+                </div>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-chronic">Chronic</span>
+                        <h4>Cancer</h4>
+                        <p>A group of diseases in which abnormal cells grow uncontrollably and may spread to other parts of the body; there are more than 100 different types, including Carcinoma, Sarcoma, Leukemia, Lymphoma, and Multiple Myeloma.</p>
+                        <p><strong>Symptoms:</strong> unexplained weight loss, persistent fatigue, lumps or swelling, unusual bleeding, persistent cough, changes in bowel/bladder habits.</p>
+                        <p><strong>Treatment:</strong> surgery, chemotherapy, radiation therapy, immunotherapy, targeted therapy, hormone therapy.</p>
+                        <p><strong>Interesting fact:</strong> According to the WHO, 30–50% of cancer cases can be prevented through healthy lifestyle choices and reducing known risk factors.</p>
+                    </div>
+                    <div class="disease-card-image" data-filename="cancer.png"></div>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h3 class="section-heading">Preventing Chronic Illnesses</h3>
+                <div class="info-text">
+                    <p>Healthy lifestyle choices can significantly lower the risk of developing many chronic illnesses.</p>
+                </div>
+                <ul class="info-list">
+                    <li><strong>Eat a balanced diet</strong> — fruits, vegetables, whole grains, lean proteins, and healthy fats while limiting sugary drinks, processed foods, and excess salt.</li>
+                    <li><strong>Exercise regularly</strong> — aim for at least 150 minutes of moderate physical activity each week.</li>
+                    <li><strong>Avoid smoking and vaping</strong> — tobacco products damage the lungs, heart, and blood vessels.</li>
+                    <li><strong>Limit alcohol consumption</strong> — protects the liver, heart, and other organs.</li>
+                    <li><strong>Get enough sleep</strong> — most adults need 7–9 hours of quality sleep each night.</li>
+                    <li><strong>Schedule regular health checkups</strong> — helps detect diseases early, before serious complications develop.</li>
+                </ul>
+            </div>
+
+            <div class="content-block" id="stories-section">
+                <h3 class="section-heading">Patient Feature Stories</h3>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-story">Chronic Condition Spotlight</span>
+                        <h4>Jaime's Story: Early Detection of Type 1 Diabetes</h4>
+                        <p><strong>Condition:</strong> Type 1 Diabetes &nbsp;|&nbsp; <strong>Source:</strong> Beyond Type 1</p>
+                        <p>At three years old, Jaime's parents noticed he was constantly thirsty, making frequent bathroom trips, unusually tired and irritable, and losing weight despite eating normally. His mother's instincts led her to contact a pediatrician friend, and blood sugar testing at urgent care confirmed Type 1 Diabetes — his pancreas was no longer producing insulin.</p>
+                        <p>Because his parents acted quickly, Jaime was diagnosed before developing Diabetic Ketoacidosis (DKA), a life-threatening complication that often occurs when Type 1 Diabetes goes undetected. Today he lives an active, healthy life, checking his blood sugar multiple times daily, taking insulin before meals, and monitoring his diet. His family shares his story through Beyond Type 1 to help other parents recognize the warning signs early.</p>
+                    </div>
+                </div>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-story">Acute Crisis Feature</span>
+                        <h4>Jamason's Story: A Life-Threatening Asthma Episode</h4>
+                        <p><strong>Condition:</strong> Severe Acute Asthma Exacerbation &nbsp;|&nbsp; <strong>Source:</strong> CDC</p>
+                        <p>Jamason had lived with generally mild, well-controlled asthma since childhood. Frequent exposure to secondhand smoke at his part-time job gradually irritated his lungs. One day, his chest suddenly tightened, breathing became difficult, and his rescue inhaler didn't help. His mother rushed him to the emergency department, where he was diagnosed with a severe acute asthma attack and admitted for continuous oxygen therapy and nebulizer treatments.</p>
+                        <p>He was hospitalized for four days before stabilizing. The experience changed his outlook — he now avoids smoke and other triggers and follows his treatment plan consistently. He shares his story through the CDC's Tips From Former Smokers campaign to warn others that asthma can become life-threatening within minutes if triggers are ignored.</p>
+                    </div>
+                </div>
+
+                <div class="disease-card">
+                    <div class="disease-card-content">
+                        <span class="disease-tag tag-story">Medical Case Study</span>
+                        <h4>Richard's Story: A Rapid Battle with Pneumonia</h4>
+                        <p><strong>Condition:</strong> Severe Acute Pneumonia &nbsp;|&nbsp; <strong>Source:</strong> American Lung Association</p>
+                        <p>Richard "Dick" Star was a hardworking, active man who rarely became seriously ill. What began as symptoms resembling a common chest cold worsened instead of improving. He developed a high fever, severe chills, rapid breathing, and intense chest pain when inhaling, and was diagnosed with bacterial pneumonia. The infection spread aggressively, causing pleural effusion (fluid around the lungs), and despite intensive treatment, he passed away less than three weeks after his first symptoms appeared.</p>
+                        <p>In his memory, his family partnered with the American Lung Association to establish the Dick Star Research Grant, supporting research into earlier diagnosis and treatment of severe lung infections.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="home-divider">— End of Reference Information —</div>
+
+            <!-- ===== END ADDED CONTENT ===== -->
         </main>
     </div>
 
@@ -831,7 +1444,39 @@
         </main>
     </div>
 
-    <footer class="footer-bar"></footer>
+    <footer class="footer-bar">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="footer-brand">
+                    <div class="footer-logo-box">logo</div>
+                    <span>Health Literacy Portal</span>
+                </div>
+                <p>Helping you understand acute and chronic illnesses through clear, reliable, easy-to-read health information.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Explore</h5>
+                <a href="#" id="footer-nav-home">Home</a>
+                <a href="#" id="footer-nav-trivia">Trivia</a>
+                <a href="#" id="footer-nav-flipcards">Flip Cards</a>
+                <a href="#" id="footer-nav-resources">Health Resources</a>
+                <a href="#" id="footer-nav-survey">Survey</a>
+            </div>
+            <div class="footer-col">
+                <h5>Topics</h5>
+                <a href="#" class="footer-filter" data-filter="acute">Acute Diseases</a>
+                <a href="#" class="footer-filter" data-filter="chronic">Chronic Diseases</a>
+                <a href="#" class="footer-filter" data-filter="stories">Patient Stories</a>
+            </div>
+            <div class="footer-col">
+                <h5>Contact</h5>
+                <p>Have questions or feedback?</p>
+                <p>We'd love to hear from you.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Health Literacy Portal. Made for educational purposes.
+        </div>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -863,16 +1508,21 @@
             navHome.addEventListener('click', (e) => {
                 e.preventDefault();
                 switchTab(navHome, homePage);
+                window.scrollTo({ top: 0, behavior: 'auto' });
+                updateHeroOnScroll();
+                playHeroVideo();
             });
 
             navTrivia.addEventListener('click', (e) => {
                 e.preventDefault();
                 switchTab(navTrivia, triviaPage);
+                pauseHeroVideo();
             });
 
             navFlipCards.addEventListener('click', (e) => {
                 e.preventDefault();
                 switchTab(navFlipCards, flipcardsPage);
+                pauseHeroVideo();
             });
 
             // Alerts for unfinished nav links
@@ -883,6 +1533,28 @@
                 });
             });
 
+            // --- Footer nav links mirror the top navigation ---
+            document.getElementById('footer-nav-home').addEventListener('click', (e) => {
+                e.preventDefault();
+                navHome.click();
+            });
+            document.getElementById('footer-nav-trivia').addEventListener('click', (e) => {
+                e.preventDefault();
+                navTrivia.click();
+            });
+            document.getElementById('footer-nav-flipcards').addEventListener('click', (e) => {
+                e.preventDefault();
+                navFlipCards.click();
+            });
+            document.getElementById('footer-nav-resources').addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('"External links and Health resources" section is under construction!');
+            });
+            document.getElementById('footer-nav-survey').addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('"Survey" section is under construction!');
+            });
+
             // --- Flip Card Interaction Logic ---
             const flipCards = document.querySelectorAll('.flip-card-scene');
             flipCards.forEach(card => {
@@ -891,7 +1563,7 @@
                 });
             });
 
-            // --- Search & Filters ---
+            // --- Search ---
             const searchInput = document.getElementById('search-input');
             searchInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter' && searchInput.value.trim() !== "") {
@@ -900,13 +1572,87 @@
                 }
             });
 
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const categoryName = button.innerText.replace('\n', ' ');
-                    alert(`Now displaying topic archives for: ${categoryName}`);
+            // --- Filter Buttons: jump straight to the matching section on the Home page ---
+            function goToSection(sectionId) {
+                // Make sure we're on the Home tab first
+                switchTab(navHome, homePage);
+                playHeroVideo();
+
+                // Wait a tick for the tab to become visible, then scroll to the section
+                requestAnimationFrame(() => {
+                    const target = document.getElementById(sectionId);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            }
+
+            document.getElementById('filter-stories').addEventListener('click', () => {
+                goToSection('stories-section');
+            });
+
+            document.getElementById('filter-acute').addEventListener('click', () => {
+                goToSection('acute-diseases-section');
+            });
+
+            document.getElementById('filter-chronic').addEventListener('click', () => {
+                goToSection('chronic-diseases-section');
+            });
+
+            // Footer topic links reuse the same behavior
+            document.querySelectorAll('.footer-filter').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const filter = link.getAttribute('data-filter');
+                    if (filter === 'stories') goToSection('stories-section');
+                    if (filter === 'acute') goToSection('acute-diseases-section');
+                    if (filter === 'chronic') goToSection('chronic-diseases-section');
                 });
             });
+
+            // --- Home Hero Video: blur + fade-out on scroll ---
+            const heroSection = document.getElementById('home-hero');
+            const heroVideo = document.getElementById('home-hero-video');
+            const heroOverlay = document.getElementById('home-hero-overlay');
+            const heroContent = document.getElementById('home-hero-content');
+
+            function playHeroVideo() {
+                if (heroVideo && heroVideo.paused) {
+                    heroVideo.play().catch(() => {});
+                }
+            }
+
+            function pauseHeroVideo() {
+                if (heroVideo && !heroVideo.paused) {
+                    heroVideo.pause();
+                }
+            }
+
+            function updateHeroOnScroll() {
+                if (!heroSection || !homePage.classList.contains('active')) return;
+
+                const heroHeight = heroSection.offsetHeight;
+                // Fade out fully by the time the user has scrolled through ~70% of the hero
+                const fadeDistance = heroHeight * 0.7;
+                const progress = Math.min(Math.max(window.scrollY / fadeDistance, 0), 1);
+                const opacity = 1 - progress;
+
+                heroVideo.style.opacity = opacity;
+                heroOverlay.style.opacity = opacity;
+                heroContent.style.opacity = opacity;
+                heroContent.style.transform = `translateY(${progress * -30}px)`;
+
+                // Once fully faded and scrolled past, pause the video to save resources
+                if (progress >= 1) {
+                    pauseHeroVideo();
+                } else if (homePage.classList.contains('active')) {
+                    playHeroVideo();
+                }
+            }
+
+            window.addEventListener('scroll', updateHeroOnScroll, { passive: true });
+            window.addEventListener('resize', updateHeroOnScroll);
+            updateHeroOnScroll();
         });
     </script>
 </body>
